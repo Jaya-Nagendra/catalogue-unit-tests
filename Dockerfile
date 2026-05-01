@@ -25,9 +25,10 @@ EXPOSE 8080
 COPY --from=builder /app /app
 ENV MONGO="true" \
     MONGO_URL="mongodb://mongodb:27017/catalogue"
-RUN addgroup -S roboshop &&
-adduser -S roboshop -G roboshop &&
-chown -R roboshop /app
+RUN addgroup -S roboshop && 
+adduser -S roboshop -G roboshop && 
+chown -R roboshop:roboshop /app
+
 
 USER roboshop
 CMD ["node", "server.js"]
